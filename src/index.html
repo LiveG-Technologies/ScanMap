@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>ScanMap</title>
+        <link rel="stylesheet" href="lib/roboto.css">
+        <link rel="stylesheet" href="lib/icons.css">
         <link rel="stylesheet" href="style.css">
         <script src="lib/instascan.min.js"></script>
         <script src="lib/jquery.min.js"></script>
@@ -10,5 +12,8 @@
     </head>
     <body>
         <video id="preview"></video>
+        <div id="lens"></div>
+        <a href="javascript:changeCamera();" class="iconButton lower left"><i class="material-icons iconButtonContent">switch_camera</i></a>
+        <a href="javascript:alert('Coming soon!');" class="iconButton lower right"><i class="material-icons iconButtonContent">add</i></a>
     </body>
 </html>
