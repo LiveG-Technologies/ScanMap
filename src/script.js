@@ -8,6 +8,7 @@ function changeCamera() {
         if (camera >= cameras.length) {camera = 0;}
 
         if (!!window.chrome && !!navigator.userAgent.match(/Android/i) && cameras.length == 2 && camera == 1) {
+            alert("Reversed");
             $("#preview").css("transform", "rotateY(180deg)");
         } else {
             $("#preview").css("transform", "rotateY(0deg)");
