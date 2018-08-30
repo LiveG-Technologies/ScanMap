@@ -1,18 +1,22 @@
 var scanner;
 var camera = 0;
+var flipped = false;
+
+function flipCamera() {
+    flipped = !flipped;
+
+    if (flipped) {
+        $("#preview").css("transform", "rotateY(180deg)");
+    } else {
+        $("#preview").css("transform", "rotateY(0deg)");
+    }
+}
 
 function changeCamera() {
     Instascan.Camera.getCameras().then(function(cameras) {
         camera++;
         
         if (camera >= cameras.length) {camera = 0;}
-
-        if (!!window.chrome && !!navigator.userAgent.match(/Android/i) && cameras.length == 2 && camera == 1) {
-            alert("Reversed, but not reversed");
-            // $("#preview").css("transform", "rotateY(180deg)");
-        } else {
-            $("#preview").css("transform", "rotateY(0deg)");
-        }
 
         scanner.start(cameras[camera]);
     });
