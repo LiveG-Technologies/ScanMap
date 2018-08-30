@@ -7,7 +7,7 @@ function changeCamera() {
         
         if (camera >= cameras.length) {camera = 0;}
 
-        if (!!window.chrome && window.orientation !== undefined && cameras.length == 2 && camera == 1) {
+        if (cameras.length == 2 && camera == 1) {
             $("#preview").css("transform", "rotateY(180deg)");
         } else {
             $("#preview").css("transform", "rotateY(0deg)");
