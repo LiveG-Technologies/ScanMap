@@ -1,11 +1,8 @@
 var scanner;
 var camera = 0;
-var flipped = false;
 
-function flipCamera() {
-    flipped = !flipped;
-
-    if (flipped) {
+function flipCamera(flip) {
+    if (flip) {
         $("#preview").css("transform", "rotateY(180deg)");
     } else {
         $("#preview").css("transform", "rotateY(0deg)");
@@ -39,7 +36,15 @@ $(function() {
 
     Instascan.Camera.getCameras().then(function(cameras) {
         if (cameras.length > 0) {
-            scanner.start(cameras[0]);
+            if (cameras.length > 1) {
+                scanner.start(cameras[1]);
+
+                camera = 1;
+            } else {
+                scanner.start(cameras[0]);
+
+                camera = 0;
+            }
         } else {
             alert("No cameras found.");
         }

@@ -1,7 +1,9 @@
 html, body {
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: "Roboto", sans-serif;
+    width: 100vw;
+    height: 100vh;
 }
 
 .iconButton {
@@ -33,9 +35,11 @@ html, body {
 }
 
 #preview {
+    position: fixed;
     width: calc(100vw + 20px);
     height: calc(100vh + 20px);
     object-fit: cover;
+    z-index: -1;
 }
 
 #lens {
@@ -47,6 +51,42 @@ html, body {
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 5vw;
     transition: 0.5s;
+}
+
+#drawerHandle {
+    position: fixed;
+    width: 100px;
+    height: 40px;
+    left: calc(50vw - 50px);
+    bottom: 0;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    pointer-events: none;
+}
+
+.drawerHandlePart {
+    width: calc(100% - 20px);
+    height: 20px;
+    margin: 10px;
+    background-color: #bbbbbb;
+    border-radius: 10px;
+}
+
+#drawer {
+    position: relative;
+    top: 100vh;
+    width: 100vw;
+    min-height: calc(100vh + 50px);
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+#drawerInsideHandleHolder {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    padding-top: 3px;
+    left: calc(50vw - 50px);
 }
 
 @media (orientation: landscape) {
