@@ -1,0 +1,10 @@
+html, body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#preview {
+    width: calc(100vw + 20px);
+    height: calc(100vh + 20px);
+    object-fit: cover;
+}
