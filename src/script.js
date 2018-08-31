@@ -63,7 +63,7 @@ $(function() {
 
             view: new ol.View({
                 center: ol.proj.fromLonLat([-0.1, 51.5]),
-                zoom: 10
+                zoom: 15
             }),
 
             controls: ol.control.defaults({
