@@ -1,6 +1,7 @@
 var scanner;
 var camera = 0;
 var map;
+var mapFeatures = {};
 
 function flipCamera(flip) {
     if (flip) {
@@ -66,11 +67,57 @@ $(function() {
                 zoom: 15
             }),
 
+            interactions: ol.interaction.defaults({
+                altShiftDragRotate: false,
+                pinchRotate: false
+            }),
+
             controls: ol.control.defaults({
                 zoom: false,
                 attribution: false,
                 rotate: false
             })
+        });
+
+        mapFeatures["geo"] = new ol.Geolocation ({
+            projection: map.getView().getProjection(),
+            tracking: true,
+            trackingOptions: {
+                enableHighAccuracy: true,
+                maximumAge: 2000
+            }
+        });
+
+        mapFeatures["iconStyle"] = new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 100],
+                anchorXUnits: "fraction",
+                anchorYUnits: "pixels",
+                scale: 0.2,
+                opacity: 1,
+                src: "../art/location.png"
+            })
+        });
+
+        mapFeatures["iconFeature"] = new ol.Feature();
+
+        mapFeatures["iconSource"] = new ol.source.Vector({
+            features: [mapFeatures["iconFeature"]]
+        });
+
+        mapFeatures["iconLayer"] = new ol.layer.Vector({
+            source: mapFeatures["iconSource"],
+            style: mapFeatures["iconStyle"]
+        });
+
+        map.addLayer(mapFeatures["iconLayer"]);
+
+        mapFeatures["geo"].on("change", function() {
+            var pos = mapFeatures["geo"].getPosition();
+
+            mapFeatures["iconFeature"].setGeometry(new ol.geom.Point(pos));
+            map.getView().setCenter(pos);
+            map.getView().setZoom(15);
         });
     }, 100);
 });
