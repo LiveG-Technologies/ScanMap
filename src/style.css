@@ -6,6 +6,27 @@ html, body {
     height: 100vh;
 }
 
+a {
+    color: #4286f4;
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+.center {
+    text-align: center;
+}
+
+.offline {
+    display: unset;
+}
+
+.online {
+    display: none;
+}
+
 .iconButton {
     color: white;
     text-decoration: none;
@@ -87,6 +108,11 @@ html, body {
     height: 40px;
     padding-top: 3px;
     left: calc(50vw - 50px);
+}
+
+#map {
+    width: 100%;
+    height: 40vw;
 }
 
 @media (orientation: landscape) {

@@ -1,5 +1,6 @@
 var scanner;
 var camera = 0;
+var map;
 
 function flipCamera(flip) {
     if (flip) {
@@ -49,4 +50,37 @@ $(function() {
             alert("No cameras found.");
         }
     });
+
+    setTimeout(function() {
+        map = new ol.Map({
+            target: "map",
+
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                })
+            ],
+
+            view: new ol.View({
+                center: ol.proj.fromLonLat([-0.1, 51.5]),
+                zoom: 10
+            }),
+
+            controls: ol.control.defaults({
+                zoom: false,
+                attribution: false,
+                rotate: false
+            })
+        });
+    }, 100);
 });
+
+setInterval(function() {
+    if (navigator.onLine) {
+        $(".online").css("display", "unset");
+        $(".offline").css("display", "none");
+    } else {
+        $(".offline").css("display", "unset");
+        $(".online").css("display", "none");
+    }
+}, 10);

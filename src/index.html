@@ -4,9 +4,11 @@
         <title>ScanMap</title>
         <link rel="stylesheet" href="lib/roboto.css">
         <link rel="stylesheet" href="lib/icons.css">
+        <link rel="stylesheet" href="lib/ol.css">
         <link rel="stylesheet" href="style.css">
-        <script src="lib/instascan.min.js"></script>
         <script src="lib/jquery.min.js"></script>
+        <script src="lib/instascan.min.js"></script>
+        <script src="lib/ol.js"></script>
         <script src="script.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     </head>
@@ -21,6 +23,14 @@
         <div id="drawer">
             <div id="drawerInsideHandleHolder">
                 <div class="drawerHandlePart"></div>
+            </div>
+            <div class="online">
+                <div id="map"></div>
+            </div>
+            <div class="offline center">
+                <h1>You're offline!</h1>
+                <p>To view this content, please connect to the internet.</p>
+                <p>When you're back online, your content will load.</p>
             </div>
         </div>
     </body>
