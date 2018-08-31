@@ -21,6 +21,12 @@ function changeCamera() {
     });
 }
 
+function resetPosition() {
+    var pos = mapFeatures["geo"].getPosition();
+
+    map.getView().setCenter(pos);
+}
+
 $(function() {
     scanner = new Instascan.Scanner({video: $("#preview")[0]});
 
@@ -112,12 +118,18 @@ $(function() {
 
         map.addLayer(mapFeatures["iconLayer"]);
 
+        var first = true;
+
         mapFeatures["geo"].on("change", function() {
             var pos = mapFeatures["geo"].getPosition();
 
             mapFeatures["iconFeature"].setGeometry(new ol.geom.Point(pos));
-            map.getView().setCenter(pos);
-            map.getView().setZoom(15);
+
+            if (map.getView().getCenter() == pos || first) {
+                map.getView().setCenter(pos);
+
+                first = false;
+            }
         });
     }, 100);
 });
