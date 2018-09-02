@@ -1,4 +1,5 @@
 var scanner;
+var scanning = true;
 var camera = 0;
 var map;
 var mapFeatures = {};
@@ -35,6 +36,8 @@ function openWebpage(URL) {
 }
 
 function closeWebpage() {
+    scanning = true;
+
     $("#webpage").fadeOut();
 
     setTimeout(function() {
@@ -47,15 +50,19 @@ $(function() {
     scanner = new Instascan.Scanner({video: $("#preview")[0]});
 
     scanner.addListener("scan", function(content) {
-        $("#lens").css("background-color", "rgba(95, 237, 83, 0.4)");
+        if (scanning) {
+            scanning = false;
 
-        setTimeout(function() {
-            $("#lens").css("background-color", "rgba(255, 255, 255, 0.4)");
+            $("#lens").css("background-color", "rgba(95, 237, 83, 0.4)");
 
             setTimeout(function() {
-                openWebpage(content.replace("http://", "https://"));
+                $("#lens").css("background-color", "rgba(255, 255, 255, 0.4)");
+
+                setTimeout(function() {
+                    openWebpage(content.replace("http://", "https://"));
+                }, 500);
             }, 500);
-        }, 500);
+        }
     });
 
     Instascan.Camera.getCameras().then(function(cameras) {
