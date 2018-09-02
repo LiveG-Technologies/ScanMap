@@ -51,7 +51,7 @@ $(function() {
             $("#lens").css("background-color", "rgba(255, 255, 255, 0.4)");
 
             setTimeout(function() {
-                openWebpage(content);
+                openWebpage(content.replace("http://", "https://"));
             }, 500);
         }, 500);
     });
