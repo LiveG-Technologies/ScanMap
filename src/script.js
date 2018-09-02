@@ -35,10 +35,12 @@ function openWebpage(URL) {
 }
 
 function closeWebpage() {
-    $("#webpageContent").attr("src", "about:blank");
-    $("#webpageURL").text("Webpage");
-
     $("#webpage").fadeOut();
+
+    setTimeout(function() {
+        $("#webpageContent").attr("src", "about:blank");
+        $("#webpageURL").text("Webpage");
+    }, 500);
 }
 
 $(function() {
