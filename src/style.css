@@ -66,10 +66,10 @@ a:active {
 
 #lens {
     position: fixed;
-    width: 50vw;
-    height: 50vw;
     top: calc(calc(100vh - 50vw) / 2);
     left: calc(calc(100vw - 50vw) / 2);
+    width: 50vw;
+    height: 50vw;
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 5vw;
     transition: 0.5s;
@@ -77,9 +77,9 @@ a:active {
 
 #drawerHandle {
     position: fixed;
+    left: calc(50vw - 50px);
     width: 100px;
     height: 40px;
-    left: calc(50vw - 50px);
     bottom: 0;
     background-color: white;
     border-radius: 10px 10px 0 0;
@@ -162,7 +162,6 @@ a:active {
 
 @media (orientation: landscape) {
     #lens {
-        position: absolute;
         width: 50vh;
         height: 50vh;
         top: calc(calc(100vh - 50vh) / 2);
