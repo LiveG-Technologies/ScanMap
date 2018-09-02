@@ -4,6 +4,31 @@ var camera = 0;
 var map;
 var mapFeatures = {};
 
+function getScrollbarWidth() {
+    var outer = document.createElement("div");
+
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    outer.style.msOverflowStyle = "scrollbar";
+
+    document.body.appendChild(outer);
+
+    var widthNoScroll = outer.offsetWidth;
+
+    outer.style.overflow = "scroll";
+
+    var inner = document.createElement("div");
+
+    inner.style.width = "100%";
+    outer.appendChild(inner);        
+
+    var widthWithScroll = inner.offsetWidth;
+
+    outer.parentNode.removeChild(outer);
+
+    return widthNoScroll - widthWithScroll;
+}
+
 function flipCamera(flip) {
     if (flip) {
         $("#preview").css("transform", "rotateY(180deg)");
@@ -25,7 +50,7 @@ function changeCamera() {
 function resetPosition() {
     var pos = mapFeatures["geo"].getPosition();
 
-    map.getView().setCenter(pos);
+    map.getView().animate({center: pos});
 }
 
 function openWebpage(URL) {
@@ -50,7 +75,7 @@ $(function() {
     scanner = new Instascan.Scanner({video: $("#preview")[0]});
 
     scanner.addListener("scan", function(content) {
-        if (scanning) {
+        if (scanning && $("body").scrollTop() <= 200) {
             scanning = false;
 
             $("#lens").css("background-color", "rgba(95, 237, 83, 0.4)");
@@ -149,12 +174,28 @@ $(function() {
             mapFeatures["iconFeature"].setGeometry(new ol.geom.Point(pos));
 
             if (map.getView().getCenter() == pos || first) {
-                map.getView().setCenter(pos);
+                map.getView().animate({center: pos});
 
                 first = false;
             }
         });
     }, 100);
+
+    $("body").scroll(function() {
+        if ($("body").scrollTop() > 200 - $("#options").height()) {
+            $("#options").css({
+                "position": "fixed",
+                "top": "unset",
+                "bottom": "0"
+            });
+        } else {
+            $("#options").css({
+                "position": "absolute",
+                "top": "calc(100vh + 100px)",
+                "bottom": "unset"
+            });
+        }
+    });
 });
 
 setInterval(function() {
@@ -165,4 +206,6 @@ setInterval(function() {
         $(".offline").css("display", "unset");
         $(".online").css("display", "none");
     }
-}, 10);
+
+    $("#preview").css("width", "calc(100vw - " + getScrollbarWidth() + "px)");
+}, 0);

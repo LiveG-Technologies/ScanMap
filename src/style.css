@@ -1,9 +1,10 @@
 html, body {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     overflow-x: hidden;
     font-family: "Roboto", sans-serif;
-    width: 100vw;
-    height: 100vh;
 }
 
 a {
@@ -36,17 +37,17 @@ a:active {
 }
 
 .iconButton.lower {
-    position: absolute;
+    position: fixed;
     bottom: 24px;
 }
 
 .iconButton.left {
-    position: absolute;
+    position: fixed;
     left: 24px;
 }
 
 .iconButton.right {
-    position: absolute;
+    position: fixed;
     left: unset;
     right: 24px;
 }
@@ -57,14 +58,14 @@ a:active {
 
 #preview {
     position: fixed;
-    width: calc(100vw + 20px);
+    width: calc(100vw - 20px);
     height: calc(100vh + 20px);
     object-fit: cover;
     z-index: -1;
 }
 
 #lens {
-    position: absolute;
+    position: fixed;
     width: 50vw;
     height: 50vw;
     top: calc(calc(100vh - 50vw) / 2);
@@ -115,9 +116,17 @@ a:active {
     height: 40vh;
 }
 
+#options {
+    position: absolute;
+    top: calc(100vh + 100px);
+    width: 100%;
+    height: 50px;
+    background-color: #4286f4;
+}
+
 #webpage {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
