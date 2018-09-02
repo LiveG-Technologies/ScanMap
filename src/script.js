@@ -27,6 +27,20 @@ function resetPosition() {
     map.getView().setCenter(pos);
 }
 
+function openWebpage(URL) {
+    $("#webpageContent").attr("src", URL);
+    $("#webpageURL").text(URL);
+
+    $("#webpage").fadeIn();
+}
+
+function closeWebpage() {
+    $("#webpageContent").attr("src", "about:blank");
+    $("#webpageURL").text("Webpage");
+
+    $("#webpage").fadeOut();
+}
+
 $(function() {
     scanner = new Instascan.Scanner({video: $("#preview")[0]});
 
@@ -37,7 +51,7 @@ $(function() {
             $("#lens").css("background-color", "rgba(255, 255, 255, 0.4)");
 
             setTimeout(function() {
-                alert(content);
+                openWebpage(content);
             }, 500);
         }, 500);
     });
@@ -54,7 +68,7 @@ $(function() {
                 camera = 0;
             }
         } else {
-            alert("No cameras found.");
+            alert("No cameras found, so you won't be able to scan anything. Sorry!");
         }
     });
 

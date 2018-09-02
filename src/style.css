@@ -115,6 +115,42 @@ a:active {
     height: 40vh;
 }
 
+#webpage {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
+
+#webpageURL {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100vw - 100px);
+    padding: 20px;
+    overflow: hidden;
+}
+
+#webpageCloseButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    color: black;
+}
+
+#webpageContent {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    border: none;
+}
+
 @media (orientation: landscape) {
     #lens {
         position: absolute;
